@@ -1,4 +1,4 @@
-# AETHERIS // Academic OS & AI Mentorship System
+# AI-Powered-Project-Management-and-Mentorship-System
 
 > **A tactile, frosted-obsidian research governance and AI mentorship platform for academic engineering capstones.**  
 > Inspired by the craft of Linear, Raycast, and Cron. Built with React, Tailwind CSS, Framer Motion, and Lucide Icons.
