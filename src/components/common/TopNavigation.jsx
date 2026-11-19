@@ -44,9 +44,6 @@ export const TopNavigation = () => {
                 v2.4
               </span>
             </div>
-            <p className="text-[10px] text-[#CBD5E1] tracking-tight hidden sm:block">
-              Adaptive Research Governance & AI Mentorship
-            </p>
           </div>
         </div>
 

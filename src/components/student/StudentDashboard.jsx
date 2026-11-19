@@ -3,6 +3,7 @@ import { useApp } from '../../context/AppContext';
 import { KanbanBoard } from './KanbanBoard';
 import { TimelineView } from './TimelineView';
 import { DocumentManager } from './DocumentManager';
+import { ProjectBlueprint } from './ProjectBlueprint';
 import { 
   GitBranch, 
   Clock, 
@@ -172,6 +173,7 @@ export const StudentDashboard = () => {
             { id: 'kanban', label: 'Kanban Board', icon: Layers },
             { id: 'timeline', label: 'Milestone Timeline', icon: Calendar },
             { id: 'documents', label: 'Document Library', icon: FileText },
+            { id: 'blueprint', label: 'AI Project Blueprint', icon: Sparkles },
           ].map((tab) => {
             const Icon = tab.icon;
             const isActive = activeStudentView === tab.id;
@@ -207,6 +209,7 @@ export const StudentDashboard = () => {
       {activeStudentView === 'kanban' && <KanbanBoard />}
       {activeStudentView === 'timeline' && <TimelineView />}
       {activeStudentView === 'documents' && <DocumentManager />}
+      {activeStudentView === 'blueprint' && <ProjectBlueprint />}
 
     </div>
   );

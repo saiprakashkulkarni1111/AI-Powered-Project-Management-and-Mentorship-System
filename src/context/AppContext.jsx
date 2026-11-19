@@ -55,6 +55,16 @@ export const AppProvider = ({ children }) => {
   const [auditLogs, setAuditLogs] = useState(initialAuditLogs);
   const [notifications, setNotifications] = useState(initialNotifications);
   const [recommendations, setRecommendations] = useState(aiRecommendations);
+  const [studentProfile, setStudentProfile] = useState({
+    name: 'Alex Mercer',
+    academicLevel: 'Senior undergraduate',
+    skills: ['React', 'Python', 'Machine Learning'],
+    interests: 'Intelligent edge systems and applied AI'
+  });
+  const [projectBlueprint, setProjectBlueprint] = useState(null);
+  const [blueprintGenerating, setBlueprintGenerating] = useState(false);
+  const [mentorMessages, setMentorMessages] = useState([]);
+  const [generatedReports, setGeneratedReports] = useState([]);
 
   // UI Interactive States
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
@@ -291,6 +301,72 @@ export const AppProvider = ({ children }) => {
     logAudit('DOCUMENT_UPLOADED', newDoc.name, 'INFO', `Uploaded version ${newDoc.version}`);
   };
 
+  const saveStudentProfile = (profile) => {
+    setStudentProfile(profile);
+    logAudit('STUDENT_PROFILE_UPDATED', profile.name, 'INFO', 'Skill assessment and academic interests updated');
+  };
+
+  const generateProjectBlueprint = async (idea, profile = studentProfile) => {
+    if (!idea.trim()) {
+      return null;
+    }
+
+    setBlueprintGenerating(true);
+    try {
+      const response = await api.generateProjectBlueprint({ idea: idea.trim(), profile });
+      if (!response.success) {
+        throw new Error('Project blueprint generation failed');
+      }
+      setProjectBlueprint(response.data);
+      logAudit('PROJECT_BLUEPRINT_GENERATED', idea.trim(), 'INFO', 'Multi-agent planning pipeline completed');
+      return response.data;
+    } finally {
+      setBlueprintGenerating(false);
+    }
+  };
+
+  const sendMentorMessage = async (message) => {
+    if (!message.trim()) {
+      return null;
+    }
+
+    const userMessage = {
+      id: `message-${Date.now()}`,
+      role: 'student',
+      content: message.trim(),
+      timestamp: new Date().toISOString()
+    };
+    setMentorMessages((prev) => [...prev, userMessage]);
+
+    const response = await api.askMentor({ message, blueprint: projectBlueprint });
+    if (!response.success) {
+      throw new Error('Mentor response failed');
+    }
+
+    const mentorMessage = {
+      id: `message-${Date.now()}-mentor`,
+      role: 'mentor',
+      content: response.data.message,
+      timestamp: new Date().toISOString()
+    };
+    setMentorMessages((prev) => [...prev, mentorMessage]);
+    return mentorMessage;
+  };
+
+  const generateProjectReport = async (type) => {
+    const response = await api.generateProjectReport({
+      type,
+      blueprint: projectBlueprint,
+      profile: studentProfile
+    });
+    if (!response.success) {
+      throw new Error('Project report generation failed');
+    }
+    setGeneratedReports((prev) => [response.data, ...prev]);
+    logAudit('REPORT_GENERATED', response.data.title, 'INFO', `Generated ${type} report`);
+    return response.data;
+  };
+
   // AI Actions: Apply Recommended Task to Board
   const applyRecommendationToBoard = async (recId) => {
     const rec = recommendations.find((r) => r.id === recId);
@@ -369,6 +445,15 @@ export const AppProvider = ({ children }) => {
         requestRevision,
         documents,
         uploadDocument,
+        studentProfile,
+        saveStudentProfile,
+        projectBlueprint,
+        blueprintGenerating,
+        generateProjectBlueprint,
+        mentorMessages,
+        sendMentorMessage,
+        generatedReports,
+        generateProjectReport,
         selectedDocument,
         setSelectedDocument,
         addDocumentAnnotation,

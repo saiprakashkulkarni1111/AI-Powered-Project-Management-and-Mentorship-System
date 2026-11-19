@@ -265,6 +265,18 @@ export const MentorDashboard = () => {
                   </div>
                 </div>
 
+                {/* AI-generated passive monitoring summary */}
+                <div className="p-3 rounded-xl bg-[#38BDF8]/[0.04] border border-[#38BDF8]/15">
+                  <span className="text-[10px] font-mono-tabular text-[#38BDF8] uppercase">
+                    AI Mentor Summary
+                  </span>
+                  <p className="text-[11px] text-[#CBD5E1] leading-relaxed mt-1">
+                    {isHighRisk
+                      ? `${tm.name} requires intervention: ${tm.riskFactors?.[0] || 'execution risk detected'}. Review the next milestone and mitigation plan.`
+                      : `${tm.name} is ${tm.health >= 85 ? 'healthy and on track' : 'progressing with monitoring required'} at ${tm.milestoneProgress}% of its current milestone.`}
+                  </p>
+                </div>
+
                 {/* Risk Factors if any */}
                 {tm.riskFactors && tm.riskFactors.length > 0 && (
                   <div className="space-y-1">
