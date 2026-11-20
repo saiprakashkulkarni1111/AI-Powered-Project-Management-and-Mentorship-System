@@ -10,13 +10,12 @@ import {
   Check, 
   Lock, 
   ArrowRight,
-  Database,
-  LogIn
+  Database
 } from 'lucide-react';
 import { Badge } from '../common/Badge';
 
 export const AuthModal = () => {
-  const { authModalOpen, setAuthModalOpen, role, setRole, users, setShowLoginPage } = useApp();
+  const { authModalOpen, setAuthModalOpen, role, setRole, users } = useApp();
   const [selectedRole, setSelectedRole] = useState(role);
 
   if (!authModalOpen) return null;
@@ -139,18 +138,6 @@ export const AuthModal = () => {
                 );
               })}
             </div>
-
-            {/* Full Sample Login Gateway Button */}
-            <button
-              onClick={() => {
-                setAuthModalOpen(false);
-                setShowLoginPage(true);
-              }}
-              className="w-full py-2.5 px-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-xs font-semibold text-[#F1F5F9] border border-white/[0.1] hover:border-[#38BDF8]/40 flex items-center justify-center gap-2 transition-all shadow-sm group"
-            >
-              <LogIn className="w-3.5 h-3.5 text-[#38BDF8] group-hover:scale-110 transition-transform" strokeWidth={1.5} />
-              <span>Open Dedicated Full-Screen Sample Login Portals</span>
-            </button>
 
             {/* Flask API Integration Hint */}
             <div className="p-3.5 rounded-xl bg-black/30 border border-white/[0.06] space-y-1.5 font-mono-tabular">
