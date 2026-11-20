@@ -52,7 +52,7 @@ export const ProfilePopover = ({ isOpen, onClose }) => {
     },
     {
       id: 'mentor',
-      label: 'Faculty & Mentor Portal Login',
+      label: 'Faculty Portal Login',
       user: users.mentor,
       icon: Users,
       accent: 'amber',
@@ -60,7 +60,7 @@ export const ProfilePopover = ({ isOpen, onClose }) => {
     },
     {
       id: 'admin',
-      label: 'Admin Console Login',
+      label: 'Administration Portal Login',
       user: users.admin,
       icon: ShieldCheck,
       accent: 'coral',
