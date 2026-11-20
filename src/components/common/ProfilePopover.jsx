@@ -5,11 +5,9 @@ import {
   GraduationCap, 
   Users, 
   ShieldCheck, 
-  LogIn, 
   LogOut, 
   Key, 
   Check, 
-  ExternalLink,
   Shield,
   Layers,
   Sparkles
@@ -22,7 +20,6 @@ export const ProfilePopover = ({ isOpen, onClose }) => {
     role, 
     loginAs, 
     logout, 
-    setShowLoginPage, 
     users 
   } = useApp();
 
@@ -70,11 +67,6 @@ export const ProfilePopover = ({ isOpen, onClose }) => {
 
   const handlePortalSwitch = (targetRole) => {
     loginAs(targetRole);
-    onClose();
-  };
-
-  const handleOpenFullLoginPage = () => {
-    setShowLoginPage(true);
     onClose();
   };
 
@@ -171,20 +163,8 @@ export const ProfilePopover = ({ isOpen, onClose }) => {
             })}
           </div>
 
-          {/* Full-Screen Login Page Action */}
-          <div className="p-2.5 space-y-1.5 bg-white/[0.01]">
-            <button
-              onClick={handleOpenFullLoginPage}
-              className="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-xs font-semibold text-white border border-white/[0.08] hover:border-[#00F2FE]/40 transition-all group"
-            >
-              <div className="flex items-center gap-2">
-                <LogIn className="w-3.5 h-3.5 text-[#00F2FE] group-hover:scale-110 transition-transform" strokeWidth={1.5} />
-                <span>View Full-Screen Login Portals</span>
-              </div>
-              <ExternalLink className="w-3 h-3 text-[#CBD5E1]" strokeWidth={1.5} />
-            </button>
-
-            {/* Sign Out Button */}
+          {/* Sign Out Button */}
+          <div className="p-2.5 bg-white/[0.01]">
             <button
               onClick={handleLogout}
               className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium text-[#FF2E93] hover:bg-[#FF007F]/10 transition-colors"

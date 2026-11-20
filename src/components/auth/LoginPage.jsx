@@ -315,27 +315,6 @@ export const LoginPage = ({ onClose }) => {
                 </button>
               </form>
 
-              {/* Institutional Single Sign-On Alternates */}
-              <div className="pt-2 border-t border-white/[0.06] space-y-2.5">
-                <span className="text-[10px] font-mono-tabular text-[#94A3B8] uppercase block">
-                  Federated Identity Providers:
-                </span>
-                <div className="grid grid-cols-2 gap-2 text-xs font-mono-tabular">
-                  <button
-                    onClick={handleLogin}
-                    className="p-2.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] text-[#F1F5F9] flex items-center justify-center gap-2 transition-colors"
-                  >
-                    <span className="text-[#38BDF8]">InCommon</span> SSO
-                  </button>
-                  <button
-                    onClick={handleLogin}
-                    className="p-2.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] text-[#F1F5F9] flex items-center justify-center gap-2 transition-colors"
-                  >
-                    <span className="text-emerald-400">Eduroam</span> Federation
-                  </button>
-                </div>
-              </div>
-
             </div>
 
             {/* Right Column: Persona Card & Academic Bio (5 cols) */}
