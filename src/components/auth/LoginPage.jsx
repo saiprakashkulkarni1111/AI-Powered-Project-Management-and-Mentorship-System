@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useApp } from '../../context/AppContext';
 import { 
   Layers, 
@@ -11,13 +12,19 @@ import {
   Eye, 
   EyeOff, 
   ArrowRight, 
+  CheckCircle2, 
+  Sparkles, 
+  ExternalLink,
+  ShieldAlert,
   Smartphone,
-  Fingerprint
+  Fingerprint,
+  ChevronRight,
+  X
 } from 'lucide-react';
 import { Badge } from '../common/Badge';
 
 export const LoginPage = ({ onClose }) => {
-  const { loginAs, role, users } = useApp();
+  const { loginAs, role, users, showLoginPage, setShowLoginPage } = useApp();
 
   const [portalType, setPortalType] = useState(role || 'student'); // 'student' | 'mentor' | 'admin'
   const [showPassword, setShowPassword] = useState(false);
@@ -70,7 +77,7 @@ export const LoginPage = ({ onClose }) => {
     },
     {
       id: 'mentor',
-      label: 'Faculty Portal',
+      label: 'Faculty & Mentor Portal',
       icon: Users,
       accent: 'amber',
       badge: 'Faculty Advisor',
@@ -78,7 +85,7 @@ export const LoginPage = ({ onClose }) => {
     },
     {
       id: 'admin',
-      label: 'Administration Portal',
+      label: 'Department Admin Console',
       icon: ShieldCheck,
       accent: 'coral',
       badge: 'System Admin',
@@ -111,10 +118,15 @@ export const LoginPage = ({ onClose }) => {
         </div>
 
         {/* Back to Workspace button if authenticated */}
-        <div className="hidden sm:flex items-center gap-2 text-[10px] font-mono-tabular text-[#94A3B8]">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          Secure identity gateway online
-        </div>
+        {showLoginPage && (
+          <button
+            onClick={() => setShowLoginPage(false)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] text-xs font-medium text-white border border-white/[0.08] hover:border-[#00F2FE]/40 transition-colors"
+          >
+            <span>Return to Workspace</span>
+            <ChevronRight className="w-3.5 h-3.5 text-[#00F2FE]" strokeWidth={1.5} />
+          </button>
+        )}
       </div>
 
       {/* Main Authentication Container */}

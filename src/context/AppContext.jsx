@@ -68,8 +68,7 @@ export const AppProvider = ({ children }) => {
 
   // UI Interactive States
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
-  // Start at the identity gateway so each profile enters through its own workspace.
-  const [showLoginPage, setShowLoginPage] = useState(true);
+  const [showLoginPage, setShowLoginPage] = useState(false);
   const [aiDrawerOpen, setAiDrawerOpen] = useState(false);
   const [aiActiveTab, setAiActiveTab] = useState('recommendations'); // 'recommendations' | 'roadmap' | 'risk'
   const [createTaskModalOpen, setCreateTaskModalOpen] = useState(false);

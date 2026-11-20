@@ -87,14 +87,14 @@ export const AuthModal = () => {
                   user: users.mentor,
                   icon: Users,
                   accent: 'emerald',
-                  desc: 'Supervises capstone teams, reviews specifications & signs off milestones'
+                  desc: 'Supervises capstone teams, reviews specs & signs off milestones'
                 },
                 {
                   id: 'admin',
                   user: users.admin,
                   icon: ShieldCheck,
                   accent: 'coral',
-                  desc: 'Manages RBAC permissions, platform SLAs & audit logs'
+                  desc: 'Manages RBAC permission matrix, platform SLAs & audit logs'
                 }
               ].map((item) => {
                 const Icon = item.icon;
