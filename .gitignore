@@ -28,9 +28,3 @@ dist-ssr
 .env.production
 .env.local
 .env.*.local
-
-# Python generated files
-__pycache__/
-*.py[cod]
-venv/
-*.py[cod]
